@@ -68,8 +68,13 @@ Then diversity rule (avoid too many songs from same artist)
 You can include a simple diagram or bullet list if helpful.
 ![](flowchart_v2.svg)
 
-example of output:
+Example of normal user profile output:
+
 ![](recom_Screenshot.png)
+
+Example of Edge/Adversarial user profile outputs:
+
+![](advers_1.png)   ![](radvers_2.png)   ![](advers_3.png)
 
 ---
 

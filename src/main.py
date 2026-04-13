@@ -12,16 +12,108 @@ You will implement the functions in recommender.py:
 from recommender import load_songs, recommend_songs
 
 
+USER_PROFILES = {
+    "High-Energy Pop": {
+        "favorite_genre": "pop",
+        "favorite_mood": "happy",
+        "target_energy": 0.90,
+        "likes_acoustic": False,
+    },
+    "Chill Lofi": {
+        "favorite_genre": "lofi",
+        "favorite_mood": "chill",
+        "target_energy": 0.35,
+        "likes_acoustic": True,
+    },
+    "Deep Intense Rock": {
+        "favorite_genre": "rock",
+        "favorite_mood": "intense",
+        "target_energy": 0.95,
+        "likes_acoustic": False,
+    },
+    "Adversarial - High Energy Sad Acoustic": {
+        "favorite_genre": "pop",
+        "favorite_mood": "sad",
+        "target_energy": 0.95,
+        "likes_acoustic": True,
+    },
+    "Adversarial - Chill Max Energy": {
+        "favorite_genre": "lofi",
+        "favorite_mood": "chill",
+        "target_energy": 1.0,
+        "likes_acoustic": True,
+    },
+    "Adversarial - Missing Genre": {
+        "favorite_genre": "nonexistent_genre",
+        "favorite_mood": "happy",
+        "target_energy": 0.70,
+        "likes_acoustic": False,
+    },
+    # "Adversarial - Missing Mood": {
+    #     "favorite_genre": "rock",
+    #     "favorite_mood": "nonexistent_mood",
+    #     "target_energy": 0.80,
+    #     "likes_acoustic": False,
+    # },
+    # "Adversarial - Neutral Energy Midpoint": {
+    #     "favorite_genre": "pop",
+    #     "favorite_mood": "happy",
+    #     "target_energy": 0.50,
+    #     "likes_acoustic": False,
+    # },
+    # "Adversarial - EDM But Acoustic": {
+    #     "favorite_genre": "edm",
+    #     "favorite_mood": "intense",
+    #     "target_energy": 0.90,
+    #     "likes_acoustic": True,
+    # },
+    # "Adversarial - Folk But Electronic": {
+    #     "favorite_genre": "folk",
+    #     "favorite_mood": "calm",
+    #     "target_energy": 0.20,
+    #     "likes_acoustic": False,
+    # },
+    # "Adversarial - Energy Too High": {
+    #     "favorite_genre": "pop",
+    #     "favorite_mood": "happy",
+    #     "target_energy": 1.50,
+    #     "likes_acoustic": False,
+    # },
+    # "Adversarial - Energy Too Low": {
+    #     "favorite_genre": "rock",
+    #     "favorite_mood": "sad",
+    #     "target_energy": -0.30,
+    #     "likes_acoustic": True,
+    # },
+    # "Adversarial - Minimal Signal": {
+    #     "favorite_genre": "",
+    #     "favorite_mood": "",
+    #     "target_energy": 0.90,
+    #     "likes_acoustic": False,
+    # },
+    # "Adversarial - Pop Chill Conflict": {
+    #     "favorite_genre": "pop",
+    #     "favorite_mood": "chill",
+    #     "target_energy": 0.90,
+    #     "likes_acoustic": False,
+    # },
+    # "Adversarial - Tie Heavy Rock": {
+    #     "favorite_genre": "rock",
+    #     "favorite_mood": "intense",
+    #     "target_energy": 0.90,
+    #     "likes_acoustic": False,
+    # },
+}
+
+
 def main() -> None:
     songs = load_songs("data/songs.csv") 
 
-    # Starter example profile
-    user_prefs = {
-        "favorite_genre": "pop", 
-        "favorite_mood": "happy", 
-        "target_energy": 0.8,
-        "likes_acoustic": False
-    }
+    # Pick one profile to run in the CLI.
+    # active_profile_name = "High-Energy Pop"
+    active_profile_name = "Adversarial - Missing Genre"
+
+    user_prefs = USER_PROFILES[active_profile_name]
 
     recommendations = recommend_songs(user_prefs, songs, k=5)
 
@@ -29,6 +121,7 @@ def main() -> None:
     print("\n" + "="*80)
     print("🎵 MUSIC RECOMMENDER RESULTS")
     print("="*80)
+    print(f"Profile: {active_profile_name}")
     print(f"\nUser Preferences:")
     print(f"  • Genre: {user_prefs['favorite_genre']}")
     print(f"  • Mood: {user_prefs['favorite_mood']}")
